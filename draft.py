@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import sys
 from tkinter import *
 import pygame
@@ -7,11 +7,16 @@ from pygame.locals import *
 # initialize the pygame modules
 pygame.init()
 
-# set the keys to different frequencies / wav files
-# having a lot of wav file might look bulky, so we could update 
-# these assignments to be frequencies
-# the underscores are where the file path games
+#If we're using a dictionary of keys...
+#Have a file that basically have all the keys name so we can just use
+#np.loadtxt to read it in
+names = np.loadtxt("filename")
+keys = {}
+for i in range (names.shape[0]):
+  keys[names[i]] = frequency # <-- the frequency we can just calculate it by hand and add it into the file
 
+
+"""
 def C_sharp(): 
   note.set("C#")
   sound = pygame.mixer.Sound(_____)
@@ -43,5 +48,5 @@ def B_flat():
   return
 
 # and so on...
-
+"""
 
