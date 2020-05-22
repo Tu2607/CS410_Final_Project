@@ -12,3 +12,7 @@ We could record what the user is playing on their computer keys, so they can rep
 
 ##### Programming Language
 We will be using Python 3 for this project. 
+
+##### References
+For receiving keyboard inputs, https://pypi.org/project/keyboard/
+For playing and recording sound, https://realpython.com/playing-and-recording-sound-python/
