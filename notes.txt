@@ -7,3 +7,6 @@ pygame library
 category: user interface
 purpose: would help with visualizing the piano keys
 website: https://www.pygame.org/docs/tut/ImportInit.html
+
+downloading wav files, this one only has about 60 wav files
+http://freepats.zenvoid.org/Piano/acoustic-grand-piano.html
