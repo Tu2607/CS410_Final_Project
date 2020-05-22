@@ -1,5 +1,6 @@
 Might be useful for project implementation: 
 
 pygame library
+category: user interface
 purpose: would help with visualizing the piano keys
 website: https://www.pygame.org/docs/tut/ImportInit.html
