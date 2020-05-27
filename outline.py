@@ -52,7 +52,7 @@ def released_button
 # 'key' is the name of the computer keyboard key
 # 'C1' is the name of the note, 1 represents the octave that it's in
 NOTES = { 
-  'key': 'C1', 
+  'C1': 112, 
 }
 
 # ---- MAIN ----
