@@ -1,3 +1,5 @@
+import frequency_table
+
 KEY_DICTIONARY = { 
   '1': 'C3', 
   '2': 'C#3', 
