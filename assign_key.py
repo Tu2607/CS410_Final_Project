@@ -1,5 +1,7 @@
 import frequency_table
+import numpy as np
 
+"""
 KEY_DICTIONARY = { 
   '1': 'C3', 
   '2': 'C#3', 
@@ -38,6 +40,7 @@ KEY_DICTIONARY = {
   'N': 'A#5', 
   'M': 'B5'
 }
+"""
 
 class Piano(Frame): 
   def __init__(self, parent_process): 
@@ -48,4 +51,17 @@ class Piano(Frame):
   def initialize(self): 
     # 2d array to hold the keys?
 
+#########Test code ##############
+#Implement this in a function later
+def list_of_wave():
+  amplitude = np.iinfo(np.int16).max
+  t = np.linspace(0., 3., 48000) 
+  notes = []
+  for value in frequency_table.frequency.values():
+    x =(0.5 * amplitude * np.sin(2 * np.pi * value * t)).astype(np.int16)
+    notes.append(x)
+  return np.array(notes)
 
+a = list_of_wave()
+b = np.loadtxt("key.txt")
+##When we have those array, we can zip them together.
