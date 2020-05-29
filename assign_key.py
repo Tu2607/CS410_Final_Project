@@ -65,3 +65,5 @@ def list_of_wave():
 a = list_of_wave()
 b = np.loadtxt("key.txt")
 ##When we have those array, we can zip them together.
+##The line below is inspired from the pianoputer.py from Github. About line 101
+key_sound = dict(zip(a,b))
