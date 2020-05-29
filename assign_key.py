@@ -46,24 +46,24 @@ class Piano(Frame):
   def __init__(self, parent_process): 
     Frame.__init__(self, parent_process, background = 'White')
     self.parent_process = parent_process
-    self.initialize()
+    self.keys = np.loadtxt("key.txt")
+    self.keyboard = self.initialize()
 
+  #Test code
+  #This function is based on the pianoputer.py from git.  Check line 101
+  #Just a concept, probably wrong
   def initialize(self): 
-    # 2d array to hold the keys?
+    sounds = self.list_of_wave() #Return the a 2d array with each row is a sine wave for each notes
+    keyboard = dict(zip(self.keys, sounds)) #Ziping the key to sound
+    return keyboard
 
 #########Test code ##############
-#Implement this in a function later
-def list_of_wave():
-  amplitude = np.iinfo(np.int16).max
-  t = np.linspace(0., 3., 48000) 
-  notes = []
-  for value in frequency_table.frequency.values():
-    x =(0.5 * amplitude * np.sin(2 * np.pi * value * t)).astype(np.int16)
+  def list_of_wave(self):
+    amplitude = np.iinfo(np.int16).max
+    t = np.linspace(0., 3., 48000) 
+    notes = []
+    for value in frequency_table.frequency.values():
+      x =(0.5 * amplitude * np.sin(2 * np.pi * value * t)).astype(np.int16)
     notes.append(x)
-  return np.array(notes)
+    return np.array(notes)
 
-a = list_of_wave()
-b = np.loadtxt("key.txt")
-##When we have those array, we can zip them together.
-##The line below is inspired from the pianoputer.py from Github. About line 101
-key_sound = dict(zip(a,b))
