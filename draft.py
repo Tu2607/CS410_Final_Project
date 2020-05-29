@@ -11,8 +11,14 @@ def list_of_wave():
   for value in frequency_table.frequency.values():
     x =(0.5 * amplitude * np.sin(2 * np.pi * value * t)).astype(np.int16)
     notes.append(x)
+  return np.array(notes)
 
-  return notes  
+a = list_of_wave()
+#Print test
+print(a)
+print(a.shape[0])
+
+
 
 
 
