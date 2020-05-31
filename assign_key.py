@@ -1,6 +1,6 @@
 import frequency_table
 import numpy as np
-
+import pygame
 """
 KEY_DICTIONARY = { 
   '1': 'C3', 
@@ -49,11 +49,12 @@ class Piano(Frame):
     self.keys = np.loadtxt("key.txt")
     self.keyboard = self.initialize()
 
-  #Test code
   #This function is based on the pianoputer.py from git.  Check line 101
-  #Just a concept, probably wrong
+  # NOTE: If we are using pygame, we need to initialize pygame.mixer according to the doc here:
+  #https://www.pygame.org/docs/ref/sndarray.html#pygame.sndarray.make_sound
   def initialize(self): 
-    sounds = self.list_of_wave() #Return the a 2d array with each row is a sine wave for each notes
+    sines = self.list_of_wave() #Return the a 2d array with each row is a sine wave for each notes
+    sounds = map(pygame.sndarray.make_sound, sines) #Copying the line 100 from the git.  The idea is the same
     keyboard = dict(zip(self.keys, sounds)) #Ziping the key to sound
     return keyboard
 
