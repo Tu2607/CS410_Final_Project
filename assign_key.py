@@ -42,15 +42,18 @@ KEY_DICTIONARY = {
 }
 """
 
-class Piano(Frame): 
-  def __init__(self, parent_process): 
-    Frame.__init__(self, parent_process, background = 'White')
-    self.parent_process = parent_process
-    self.keys = np.loadtxt("key.txt")
-    self.keyboard = self.initialize()
+#class Piano(Frame): 
+class Piano(object):
+  #def __init__(self, parent_process): 
+  def __init__(self):
+    #Frame.__init__(self, parent_process, background = 'White')
+    #self.parent_process = parent_process
+    self.keys = np.genfromtxt("key.txt", delimiter= "\n")
+    print(self.keys)
+    #self.keyboard = self.initialize()
 
   #This function is based on the pianoputer.py from git.  Check line 101
-  # NOTE: If we are using pygame, we need to initialize pygame.mixer according to the doc here:
+  #NOTE: If we are using pygame, we need to initialize pygame.mixer according to the doc here:
   #https://www.pygame.org/docs/ref/sndarray.html#pygame.sndarray.make_sound
   def initialize(self): 
     sines = self.list_of_wave() #Return the a 2d array with each row is a sine wave for each notes
@@ -68,3 +71,5 @@ class Piano(Frame):
     notes.append(x)
     return np.array(notes)
 
+
+a = Piano()
