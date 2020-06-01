@@ -1,6 +1,5 @@
 import numpy as np
 import sys
-import frequency_table
 import pygame
 import soundfile as sf
 import samplerate
@@ -14,7 +13,8 @@ def read_notes():
 def pitchshift(data, amount_of_notes):
   notes = []
   for n in range(amount_of_notes):
-    shift = 1/ (2** (n/12)) #Shift by one semitone
+    #shift = 1/ (2** (n/12)) #Shift by one semitone
+    shift = 2**(n/12)
     converter = 'sinc_fastest'
     output = samplerate.resample(data, shift, converter)
     notes.append(output)
