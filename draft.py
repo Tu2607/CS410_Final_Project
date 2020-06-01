@@ -30,8 +30,10 @@ def list_of_wave():
 def main(): 
   keys = np.loadtxt("keys-copy.txt", dtype= str)
   array = read_notes()
-  pitchshift(array,1)
-  pitchshift(array,2)
+  # pitchshift(array,1)
+  # pitchshift(array,2)
+  for i in range(36): 
+    pitchshift(array, i)
   sines = list_of_wave() #Return the a 2d array with each row is a sine wave for each notes
 
   pygame.mixer.init(44100, -16, 1, 2048) #Initialize the mixer. This must happen before anything else with pygame sound
