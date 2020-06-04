@@ -6,6 +6,7 @@ import numpy as np
 from scipy.io.wavfile import read, write
 import scipy.signal
 import scipy.fftpack
+import cmath
 import matplotlib.pyplot as plt
 
 def wavwrite(f, s):
@@ -17,7 +18,12 @@ wavwrite("A3.wav", A3)
 notes = []
 notes.append(A3)
 
-def smoothing(array, window_len = 11, window= 'blackman'):
+def smoothing(array, window_len = 13, window= 'blackman'):
+    cumsum_vec = np.cumsum(np.insert(array, 0, 0))
+    ma_vec = (cumsum_vec[window_len:] - cumsum_vec[:-window_len]) / window_len
+
+    return ma_vec
+    """
     if array.ndim != 1:
         raise ValueError("Not 1d array")
     
@@ -30,6 +36,7 @@ def smoothing(array, window_len = 11, window= 'blackman'):
 
     y = np.convolve(w/w.sum(), s, mode = 'valid')
     return y
+    """
 
 def plotting(array):
     x = np.arange(44100)
@@ -42,7 +49,7 @@ def list_of_notes(notes_count, base_note):
         if n != 0:
             factor = 2**(n / 12) #semitones factor
             new_note = loop.sample(220 * factor, 44100)
-            plotting(new_note)
+            #plotting(new_note)
             new_note = smoothing(new_note) 
             wavwrite(str(n) + ".wav", new_note)
             notes.append(new_note)
