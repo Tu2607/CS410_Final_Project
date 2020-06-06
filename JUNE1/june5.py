@@ -48,7 +48,8 @@ def button_pressed(event):
   print(event.widget.index)
 
   ###   
-  write("test.wav", 44100, notes[event.widget.index])
+  new_note = notes[event.widget.index].astype(np.int16)
+  write("test.wav", 44100, new_note)
   ###
   w = sa.WaveObject.from_wave_file('test' + event.widget.name + '.wav')
   w.play()
