@@ -3,6 +3,7 @@ from tkinter import Tk, Frame, Label, PhotoImage, BOTH
 from _thread import start_new_thread
 import numpy as np
 import sampler
+from scipy.io.wavfile import read, write
 
 def smoothing(array, window_len = 13, window= 'blackman'):
     cumsum_vec = np.cumsum(np.insert(array, 0, 0))
@@ -20,7 +21,7 @@ def list_of_notes(notes_count, base_note):
 
 notes = []
 C3 = np.sin(np.linspace(0., 2. * np.pi * 131, 44100))
-scipy.io.wavfile.write('base.wav', 44100, C3)
+write('base.wav', 44100, C3)
 notes.append(C3)
 list_of_notes(36, C3)
 
