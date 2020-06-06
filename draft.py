@@ -35,6 +35,12 @@ def smoothing(array, window_len = 13, window= 'blackman'):
     """
 
 def list_of_notes(notes_count, base_note):
+
+    notes = []
+    A3 = np.sin(np.linspace(0., 2. * np.pi * 220, 44100))
+    notes.append(A3)
+
+
     loop = sampler.Loop(base_note)
     for n in range(notes_count):
         if n != 0:

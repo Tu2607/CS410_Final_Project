@@ -1,6 +1,8 @@
 import simpleaudio as sa
 from tkinter import Tk, Frame, Label, PhotoImage, BOTH
 from _thread import start_new_thread
+import numpy as np
+import sampler
 
 DICTIONARY = {
     'w': 'C3',
@@ -41,6 +43,10 @@ DICTIONARY = {
     'Z': 'A#5'
 }
 
+notes = []
+A3 = np.sin(np.linspace(0., 2. * np.pi * 220, 44100))
+notes.append(A3)
+
 # looks for the name of the note in the key array, return the label component
 def search_key(name, arr):
   for x in range(len(arr)):
@@ -57,8 +63,27 @@ def press(event):
   event.widget.configure(image = visual)
   event.widget.image = visual
 
+def smoothing(array, window_len = 13, window= 'blackman'):
+    cumsum_vec = np.cumsum(np.insert(array, 0, 0))
+    ma_vec = (cumsum_vec[window_len:] - cumsum_vec[:-window_len]) / window_len
+    return ma_vec
+
+def list_of_notes(notes_count, base_note):
+    loop = sampler.Loop(base_note)
+    for n in range(notes_count):
+        if n != 0:
+            factor = 2**(n / 12) #semitones factor
+            new_note = loop.sample(220 * factor, 44100)
+            new_note = smoothing(new_note) 
+            notes.append(new_note)
+
 # plays the key that's linked to what the user hit
 def play_sound(event):
+
+  ## New Line ##
+  list_of_notes(36, A3)
+  ### 
+
   if n:
     w = sa.WaveObject.from_wave_file('test' + n + '.wav')
     w.play()
