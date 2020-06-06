@@ -20,6 +20,7 @@ def list_of_notes(notes_count, base_note):
 
 notes = []
 C3 = np.sin(np.linspace(0., 2. * np.pi * 131, 44100))
+scipy.io.wavfile.write('base.wav', 44100, C3)
 notes.append(C3)
 list_of_notes(36, C3)
 
