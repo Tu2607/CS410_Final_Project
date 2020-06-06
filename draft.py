@@ -9,13 +9,8 @@ import scipy.fftpack
 import cmath
 import matplotlib.pyplot as plt
 
-def wavwrite(f, s):
-    write(f, 44100, (32767 * s).astype(np.int16))
-
-A3 = np.sin(np.linspace(0., 2. * np.pi * 220, 44100))
-wavwrite("A3.wav", A3)
-
 notes = []
+A3 = np.sin(np.linspace(0., 2. * np.pi * 220, 44100))
 notes.append(A3)
 
 def smoothing(array, window_len = 13, window= 'blackman'):
@@ -39,20 +34,13 @@ def smoothing(array, window_len = 13, window= 'blackman'):
     return y
     """
 
-def plotting(array):
-    x = np.arange(44100)
-    plt.plot(x,array)
-    plt.show()
-
 def list_of_notes(notes_count, base_note):
     loop = sampler.Loop(base_note)
     for n in range(notes_count):
         if n != 0:
             factor = 2**(n / 12) #semitones factor
             new_note = loop.sample(220 * factor, 44100)
-            #plotting(new_note)
             new_note = smoothing(new_note) 
-            wavwrite(str(n) + ".wav", new_note)
             notes.append(new_note)
 
 list_of_notes(3, A3)
