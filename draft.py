@@ -23,6 +23,7 @@ def smoothing(array, window_len = 13, window= 'blackman'):
     ma_vec = (cumsum_vec[window_len:] - cumsum_vec[:-window_len]) / window_len
 
     return ma_vec
+
     """
     if array.ndim != 1:
         raise ValueError("Not 1d array")
