@@ -19,6 +19,9 @@ def list_of_notes(notes_count, base_note):
             new_note = smoothing(new_note) 
             notes.append(new_note)
 
+def wavwrite(f, s):
+  write(f, 44100, (32767 * s).astype(np.int16))
+
 notes = []
 C3 = np.sin(np.linspace(0., 2. * np.pi * 131, 44100))
 write('base.wav', 44100, C3)
@@ -49,7 +52,7 @@ def button_pressed(event):
 
   ###   
   new_note = notes[event.widget.index].astype(np.int16)
-  write("test.wav", 44100, new_note)
+  wavwrite("test.wav", new_note)
   ###
   w = sa.WaveObject.from_wave_file('test' + event.widget.name + '.wav')
   w.play()
