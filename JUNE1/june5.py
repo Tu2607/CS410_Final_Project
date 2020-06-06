@@ -1,5 +1,8 @@
 import simpleaudio as sa
-from tkinter import Tk, Frame, Label, PhotoImage, BOTH
+try: 
+  from tkinter import Tk, Frame, Label, PhotoImage, BOTH
+except: 
+  from Tkinter import Tk, Frame, Label, PhotoImage, BOTH
 from _thread import start_new_thread
 import numpy as np
 import sampler
