@@ -44,8 +44,8 @@ DICTIONARY = {
 }
 
 notes = []
-A3 = np.sin(np.linspace(0., 2. * np.pi * 220, 44100))
-notes.append(A3)
+C3 = np.sin(np.linspace(0., 2. * np.pi * 131, 44100))
+notes.append(C3)
 
 # looks for the name of the note in the key array, return the label component
 def search_key(name, arr):
@@ -72,8 +72,8 @@ def list_of_notes(notes_count, base_note):
     loop = sampler.Loop(base_note)
     for n in range(notes_count):
         if n != 0:
-            factor = 2**(n / 12) #semitones factor
-            new_note = loop.sample(220 * factor, 44100)
+            factor = 2**(n / 12)  #semitones factor
+            new_note = loop.sample(131 * factor, 44100)
             new_note = smoothing(new_note) 
             notes.append(new_note)
 
@@ -81,7 +81,7 @@ def list_of_notes(notes_count, base_note):
 def play_sound(event):
 
   ## New Line ##
-  list_of_notes(36, A3)
+  list_of_notes(36, C3)
   ### 
 
   if n:
