@@ -1,45 +1,27 @@
 import simpleaudio as sa
 from tkinter import Tk, Frame, Label, PhotoImage, BOTH
 from _thread import start_new_thread
+import numpy as np
+import sampler
 
-DICTIONARY = {
-    'w': 'C3',
-    'e': 'D3',
-    'r': 'E3',
-    't': 'F3',
-    'y': 'G3',
-    'u': 'A3',
-    'i': 'B3',
-    'o': 'C4',
-    'p': 'D4',
-    'a': 'E4',
-    's': 'F4',
-    'd': 'G4',
-    'f': 'A4',
-    'g': 'B4',
-    'h': 'C5',
-    'j': 'D5',
-    'k': 'E5',
-    'l': 'F5',
-    ';': 'G5',
-    'z': 'A5',
-    'x': 'B5',
-    'W': 'C#3',
-    'E': 'D#3',
-    'T': 'F#3',
-    'Y': 'G#3',
-    'U': 'A#3',
-    'O': 'C#4',
-    'P': 'D#4',
-    'S': 'F#4',
-    'D': 'G#4',
-    'F': 'A#4',
-    'H': 'C#5',
-    'J': 'D#5',
-    'L': 'F#5',
-    ':': 'G#5',
-    'Z': 'A#5'
-}
+def smoothing(array, window_len = 13, window= 'blackman'):
+    cumsum_vec = np.cumsum(np.insert(array, 0, 0))
+    ma_vec = (cumsum_vec[window_len:] - cumsum_vec[:-window_len]) / window_len
+    return ma_vec
+
+def list_of_notes(notes_count, base_note):
+    loop = sampler.Loop(base_note)
+    for n in range(notes_count):
+        if n != 0:
+            factor = 2**(n / 12)  #semitones factor
+            new_note = loop.sample(131 * factor, 44100)
+            new_note = smoothing(new_note) 
+            notes.append(new_note)
+
+notes = []
+C3 = np.sin(np.linspace(0., 2. * np.pi * 131, 44100))
+notes.append(C3)
+list_of_notes(36, C3)
 
 # looks for the name of the note in the key array, return the label component
 def search_key(name, arr):
