@@ -39,9 +39,6 @@ notes = []
 # C3 is our base note that is generated from a sine wave
 C3 = np.sin(np.linspace(0., 2. * np.pi * 131, 44100))
 
-# write out the C3 base note to a wave file
-wavwrite('base.wav', C3)
-
 # add the C3 note to the notes array 
 notes.append(C3)
 
