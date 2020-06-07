@@ -2,6 +2,9 @@
 # CS 410P: Computers, Sound, and Music Final Course Project
 # A Program to Play Piano Using Sine Waves on Your Screen
 
+#Credits to Professor Bart Massey for his audio sampler
+#This project would have been very tough without it.
+
 import simpleaudio as sa                                 # used to play the wav file
 from tkinter import Tk, Frame, Label, PhotoImage, BOTH   # used for the keyboard visuals
 import numpy as np                                       # basic python library
@@ -9,7 +12,7 @@ import sampler                                           # importing Professor M
 from scipy.io.wavfile import read, write                 # used to write wav files
 
 # smooth out the sine wave
-def smoothing(array, window_len = 13, window= 'blackman'):
+def smoothing(array, window_len = 13):
     cumsum_vec = np.cumsum(np.insert(array, 0, 0))
     ma_vec = (cumsum_vec[window_len:] - cumsum_vec[:-window_len]) / window_len
     return ma_vec
